@@ -1,6 +1,6 @@
 import { html, render } from 'lit-html';
 import { dbank_backend } from 'declarations/dbank_backend';
-import logo from './logo2.svg';
+import './dbank.js';
 
 class App {
   greeting = '';
@@ -18,18 +18,18 @@ class App {
 
   #render() {
     let body = html`
-      <main>
-        <img src="${logo}" alt="DFINITY logo" />
-        <br />
-        <br />
-        <form action="#">
-          <label for="name">Enter your name: &nbsp;</label>
-          <input id="name" alt="Name" type="text" />
-          <button type="submit">Click Me!</button>
-        </form>
-        <section id="greeting">${this.greeting}</section>
-      </main>
-    `;
+      <div class="container">
+        <img src="dbank_logo.png" alt="DBank logo" width="100"/>
+        <h1>Current Balance: $<span id="value">0</span></h1>
+        <div class="divider"></div>
+          <form action="#">
+           <h2>Amount to Top Up</h2>
+            <input id="input-amount" type="number" step="0.01" min=0 name="topUp" value=""/>
+          <h2>Amount to Withdraw</h2>
+            <input id="withdrawal-amount" type="number" name="withdraw" step="0.01" min=0 value=""/>
+            <input id="submit-btn" type="submit" value="Finalise Transaction" />
+          </form>
+      </div>`;
     render(body, document.getElementById('root'));
     document
       .querySelector('form')
